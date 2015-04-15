@@ -1,0 +1,55 @@
+{
+  "name": "typed-request-stack",
+  "version": "2.0.0",
+  "description": "Middleware stack runner for typed HTTP requests",
+  "keywords": [],
+  "author": "Matt Esch <mattesch@uber.com>",
+  "repository": "git://github.com/uber/typed-request-stack.git",
+  "main": "index",
+  "homepage": "https://github.com/uber/typed-request-stack",
+  "bugs": {
+    "url": "https://github.com/uber/typed-request-stack/issues",
+    "email": "mattesch@uber.com"
+  },
+  "contributors": [
+    {
+      "name": "Matt Esch"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "coveralls": "^2.10.0",
+    "istanbul": "^0.3.5",
+    "jshint": "^2.6.0",
+    "opn": "^1.0.1",
+    "pre-commit": "0.0.9",
+    "tap-spec": "^2.1.1",
+    "tape": "^3.4.0",
+    "uber-licence": "^1.2.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/uber/typed-request-stack/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "test": "npm run jshint -s && npm run cover -s",
+    "add-licence": "uber-licence",
+    "check-cover": "istanbul check-coverage --branches=100 --lines=100 --functions=100",
+    "check-licence": "uber-licence --dry",
+    "cover": "istanbul cover --report html --print detail -- test/index.js && npm run check-cover -s",
+    "jshint": "jshint --verbose ./",
+    "travis": "npm run cover -s && istanbul report lcov && ((cat coverage/lcov.info | coveralls) || exit 0)",
+    "unit-test": "node test/index.js | tap-spec",
+    "view-cover": "opn ./coverage/index.html"
+  },
+  "engine": {
+    "node": ">= 0.10.x"
+  },
+  "pre-commit": [
+    "check-licence",
+    "test"
+  ],
+  "pre-commit.silent": true
+}
